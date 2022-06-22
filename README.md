@@ -1,6 +1,6 @@
 ### 词云
 
-<img src="./images/wordcloud.png" width="500"></img>
+![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordCloud.png)
 
 ###### 背景
 客户期望将四个维度的标签显示在一个词云图里，UI出的设计图如上。
@@ -17,13 +17,14 @@
 
 ###### 步骤
 1.首先做准备工作: 切图。这个切图非常重要，必须亲自切。
-<img src="./images/wordcloud0.png" width="500"></img>
+![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud0.png)
+
 如图所示，用标尺把人物图分成四个小区块，每个小区块都包含了一个完整的色块，用多边形套索将色块勾选出来放在一个单独的图层，整个人物也是一个独立图层，共5个图层。
-<img src="./images/wordcloud1.png" width="500"></img>
+![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud1.png)
 先切第一个区块，把另外四个图层隐藏，用裁切工具裁出第一块区域，然后存储为web通用格式。
-<img src="./images/wordcloud2.png" width="500"></img>
+![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud2.png)
 这里注意，由于这个切图是作为蒙板使用，只是用来限定词云的渲染形状，这张图并不会显示在图表里，所以这张图的画质并不重要，格式我选择了png-8，颜色改为2，这样即使失真严重也不会影响词云显示效果，并且图片尺寸只有1K多。为了方便，我把这张图转成了base64，建立一个js数组将base64保存起来备用。
-<img src="./images/wordcloud3.png" width="500"></img>
+![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud3.png)
 保存好第一张图后，通过历史记录撤销刚才的裁切操作，返回到上一步。将第二个色块的图层显示出来，其它的图层隐藏，切出第二个色块。
 用同样的方法，切出第三、第四个色块。
 最后再保存一张完整的人物图。
@@ -207,7 +208,7 @@ getWordCloudOptions(maskImgSrc[this.sex], bgImgSrc[this.sex], maskPosition[this.
 
 ### 链路图
 
-<img src="./images/links.png" width="500"></img>
+![links](https://raw.githubusercontent.com/myelyn/charts/master/images/links.png)
 
 这个图的UI改了好几版，最早的那版我是用echarts的graph（关系图）来做的，后来客户突然发现实际情况更复杂，于是改成了这样。这就不适合用关系图了，我决定自己画一下。
 
@@ -302,7 +303,7 @@ getWordCloudOptions(maskImgSrc[this.sex], bgImgSrc[this.sex], maskPosition[this.
 
 ### 漏斗
 
-<img src="./images/funnel.png" width="500"></img>
+![funnel](https://raw.githubusercontent.com/myelyn/charts/master/images/funnel.png)
 
 这个图选择了用原生svg来实现，涉及到的svg知识很简单，就是一些方块和渐变。
 
