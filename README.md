@@ -1,6 +1,6 @@
 ### 词云
 
-![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordCloud.png)
+![wordCloud](http://120.79.6.18/images/wordCloud.png)
 
 ###### 背景
 客户期望将四个维度的标签显示在一个词云图里，UI出的设计图如上。
@@ -11,27 +11,41 @@
 
 ###### 思路
 1.每个维度做成一个独立的词云，总共就是四个小词云。
+
 2.把人物图按颜色区块切成四块，作为小词云的蒙板，每个小词云通过定位拼在一起。
+
 3.这些蒙板的作用类似于ps中的蒙板，只用来限定词云渲染的形状，并不能当作背景来显示。
+
 4.将整个人物背景当通过echarts的异型柱状图（pictorialBar）定位拼上去。
 
 ###### 步骤
 1.首先做准备工作: 切图。这个切图非常重要，必须亲自切。
-![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud0.png)
+![wordCloud](http://120.79.6.18/images/wordcloud0.png)
 
 如图所示，用标尺把人物图分成四个小区块，每个小区块都包含了一个完整的色块，用多边形套索将色块勾选出来放在一个单独的图层，整个人物也是一个独立图层，共5个图层。
-![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud1.png)
+
+![wordCloud](http://120.79.6.18//images/wordcloud1.png)
+
 先切第一个区块，把另外四个图层隐藏，用裁切工具裁出第一块区域，然后存储为web通用格式。
-![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud2.png)
+
+![wordCloud](http://120.79.6.18/images/wordcloud2.png)
+
 这里注意，由于这个切图是作为蒙板使用，只是用来限定词云的渲染形状，这张图并不会显示在图表里，所以这张图的画质并不重要，格式我选择了png-8，颜色改为2，这样即使失真严重也不会影响词云显示效果，并且图片尺寸只有1K多。为了方便，我把这张图转成了base64，建立一个js数组将base64保存起来备用。
-![wordCloud](https://raw.githubusercontent.com/myelyn/charts/master/images/wordcloud3.png)
+
+![wordCloud](http://120.79.6.18/images/wordcloud3.png)
+
 保存好第一张图后，通过历史记录撤销刚才的裁切操作，返回到上一步。将第二个色块的图层显示出来，其它的图层隐藏，切出第二个色块。
+
 用同样的方法，切出第三、第四个色块。
+
 最后再保存一张完整的人物图。
+
 完整的人物图是作为异型柱状图显示出来，所以画质要求高一点。这里可以选择png-8，颜色32，具体配置可以根据实际显示效果来调整。
+
 全部5张图需要用同一个psd源文件切出来，这样在用echarts渲染时定位就很方便了。
 
 2.图片全部准备好之后，还要计算一下每个小色块顶部距离整个图片顶部的百分比，以及每个小色块高度所占整个图片的百分比。同样用数组保存起来。
+
 ``` 
   // imageInfo.js
 
@@ -208,7 +222,7 @@ getWordCloudOptions(maskImgSrc[this.sex], bgImgSrc[this.sex], maskPosition[this.
 
 ### 链路图
 
-![links](https://raw.githubusercontent.com/myelyn/charts/master/images/links.png)
+![links](http://120.79.6.18/images/links.png)
 
 这个图的UI改了好几版，最早的那版我是用echarts的graph（关系图）来做的，后来客户突然发现实际情况更复杂，于是改成了这样。这就不适合用关系图了，我决定自己画一下。
 
@@ -303,7 +317,7 @@ getWordCloudOptions(maskImgSrc[this.sex], bgImgSrc[this.sex], maskPosition[this.
 
 ### 漏斗
 
-![funnel](https://raw.githubusercontent.com/myelyn/charts/master/images/funnel.png)
+![funnel](http://120.79.6.18/images/funnel.png)
 
 这个图选择了用原生svg来实现，涉及到的svg知识很简单，就是一些方块和渐变。
 
