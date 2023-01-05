@@ -1,0 +1,32 @@
+最近融合项目，只要把我们两个核心模块的功能作为微应用接入，剩下的功能都不需要。这样就产生了大量的未使用的文件。
+虽然tree-shaking会忽略这部分文件，但是老板说了无关的代码尽量不要给。所以写了个简单的webpack插件，一口气删除了100多个文件。删完后把项目点了一遍，一切正常。
+···
+
+const glob = require('globby')
+const {resolve} = require('path')
+const fs = require('fs')
+
+class findUnusedFiles {
+  constructor(options) {
+    this.options = options
+  }
+  apply(compiler) {
+    compiler.hooks.afterEmit.tap('findUnusedFiles', (compilation) => {
+      const usedSourcePath = Array.from(compilation.fileDependencies).filter(f => f.includes('src/'))
+      const allSourcePath = glob.sync(resolve(__dirname, '../../src/js/**/*.{js,vue,scss}'))
+      const unusedSourcePath= allSourcePath.filter(a => !usedSourcePath.includes(a))
+      console.log(unusedSourcePath)
+      unusedSourcePath.forEach(item => {
+        fs.rm(item, (err) => {
+          if(err) {
+            console.log(err)
+          }
+        })
+      })
+    })
+  }
+}
+
+module.exports = findUnusedFiles
+
+···
